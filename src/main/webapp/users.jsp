@@ -4,8 +4,8 @@
     <title>Users</title>
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
+<h2><a href="index.html">Home</a></h2>
 <hr>
-<h2>Users</h2>
+<h3>Users</h3>
 </body>
 </html>
