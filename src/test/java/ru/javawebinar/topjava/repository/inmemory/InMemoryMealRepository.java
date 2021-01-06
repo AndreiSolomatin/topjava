@@ -3,6 +3,8 @@ package ru.javawebinar.topjava.repository.inmemory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import ru.javawebinar.topjava.MealTestData;
+import ru.javawebinar.topjava.UserTestData;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -31,9 +33,9 @@ public class InMemoryMealRepository implements MealRepository {
     private final Map<Integer, InMemoryBaseRepository<Meal>> usersMealsMap = new ConcurrentHashMap<>();
 
     {
-        MealsUtil.meals.forEach(meal -> save(meal, USER_ID));
-        save(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 14, 0), "Админ ланч", 510), ADMIN_ID);
-        save(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 21, 0), "Админ ужин", 1500), ADMIN_ID);
+        InMemoryBaseRepository<Meal> userMeals = new InMemoryBaseRepository<>();
+        MealTestData.meals.forEach(meal -> userMeals.map.put(meal.getId(), meal));
+        usersMealsMap.put(UserTestData.USER_ID, userMeals);
     }
 
 
